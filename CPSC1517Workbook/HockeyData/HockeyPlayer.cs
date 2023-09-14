@@ -18,7 +18,7 @@
         */
 
         //Properties
-        public string BrithPlace
+        public string BirthPlace
         {
             get
             {
@@ -35,7 +35,7 @@
             }
         }
 
-        /*public string FirstName
+        public string FirstName
         {
             get
             {
@@ -67,7 +67,7 @@
 
                 _lastName = value;
             }
-        }*/
+        }
 
         public int HeightInInches
         {
@@ -86,7 +86,7 @@
             }
         }
 
-        /*public int WeightInPounds
+        public int WeightInPounds
         {
             get
             {
@@ -101,7 +101,7 @@
 
                 _weightInPounds = value;
             }
-        }*/
+        }
 
         public DateOnly DateOfBirth
         {
@@ -134,14 +134,17 @@
         }
 
         //Greedy Constructor
-        public HockeyPlayer(string firstName, string lastName, String birthPlace, DateOnly birthDate,
+        public HockeyPlayer(string firstName, string lastName, String birthPlace, DateOnly dateOfBirth,
             int weightInPounds, int heightInInches, 
             Position position = Position.Center, Shot shot = Shot.Left)
         {
             //ToDo: implement and use the remaining properties
-            birthPlace = birthPlace;
+            FirstName = firstName;
+            LastName = lastName;
+            BirthPlace = birthPlace;
             HeightInInches = heightInInches;
-            DateOfBirth = birthDate;
+            WeightInPounds = weightInPounds;
+            DateOfBirth = dateOfBirth;
             Shot = shot;
             Position = position;
         }
