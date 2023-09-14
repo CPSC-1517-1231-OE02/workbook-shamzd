@@ -10,7 +10,7 @@
         private string _firstName;
         private string _lastName;
         private int _heightInInches;
-        private int _weightsInPounds;
+        private int _weightInPounds;
         private DateOnly _dateOfBirth;
         /* 
         private Position _position; //LeftWing, RightWing, Center, Defense, Goalie/ Created Enum in another file
@@ -34,6 +34,41 @@
                 _birthPlace = value;
             }
         }
+
+        /*public string FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("First Name cannot be null or empty.");
+                }
+
+                _firstName = value;
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return _lastName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Last Name cannot be null or empty.");
+                }
+
+                _lastName = value;
+            }
+        }*/
+
         public int HeightInInches
         {
             get
@@ -50,6 +85,23 @@
                 _heightInInches = value;
             }
         }
+
+        /*public int WeightInPounds
+        {
+            get
+            {
+                return _weightInPounds;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Weight must be positive.");
+                }
+
+                _weightInPounds = value;
+            }
+        }*/
 
         public DateOnly DateOfBirth
         {
@@ -75,15 +127,15 @@
             _lastName = string.Empty;
             _birthPlace= string.Empty;
             _dateOfBirth = new DateOnly();
-            _weightsInPounds = 0;
+            _weightInPounds = 0;
             _heightInInches = 0;
             Position = Position.Center;
             Shot = Shot.Left;
         }
 
         //Greedy Constructor
-        public HockeyPlayer(string firtName, string lastName, String birthPlace, DateOnly birthDate,
-            int weightInPOunds, int heightInInches, 
+        public HockeyPlayer(string firstName, string lastName, String birthPlace, DateOnly birthDate,
+            int weightInPounds, int heightInInches, 
             Position position = Position.Center, Shot shot = Shot.Left)
         {
             //ToDo: implement and use the remaining properties
@@ -94,6 +146,6 @@
             Position = position;
         }
 
-        //
+        //HockeyPlayer player = new HockeyPlayer("jane", "doe", "edmonton", new DateOnly(), 1, 2);
     }
 }
