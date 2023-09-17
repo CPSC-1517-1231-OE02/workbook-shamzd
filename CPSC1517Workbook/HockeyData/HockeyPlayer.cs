@@ -1,4 +1,6 @@
-﻿namespace Hockey.Data
+﻿using Utils;
+
+namespace Hockey.Data
 {
     /// <summary>
     /// An instance of this class will hold data about hockey player.
@@ -7,17 +9,19 @@
     {
         //Data fields
         private string _birthPlace;
-        private string _firstName;
+        private string _firstName; 
         private string _lastName;
         private int _heightInInches;
         private int _weightInPounds;
-        private DateOnly _dateOfBirth;
+        private DateOnly _dateOfBirth; //type reperensents a specific structure for a date variable.
+
         /* 
         private Position _position; //LeftWing, RightWing, Center, Defense, Goalie/ Created Enum in another file
         private Shot _shot; //created emun in another file
         */
 
         //Properties
+        //A member that provides a flexible mechanism to read, write or computer the value of a private field.
         public string BirthPlace
         {
             get
@@ -26,7 +30,8 @@
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                
+                if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("Birth place cannot be null or empty.");
                 }
@@ -43,7 +48,7 @@
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("First Name cannot be null or empty.");
                 }
@@ -60,7 +65,7 @@
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("Last Name cannot be null or empty.");
                 }
@@ -77,7 +82,7 @@
             }
             set
             {
-                if (value <= 0)
+                if (Utilities.IsZeroOrNegative(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("Height must be positive.");
                 }
@@ -94,7 +99,7 @@
             }
             set
             {
-                if (value <= 0)
+                if (!Utilities.IsPositive(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("Weight must be positive.");
                 }
@@ -112,10 +117,17 @@
 
             set
             {
+                //Can't be in th future
+                if(Utilities.IsInTheFuture(value))//doing the check to make sure we dont get bad values
+                {
+                    throw new ArgumentException("Date of birth cannot be in the future.");
+                }
+                
                 _dateOfBirth = value;
             }
         }
 
+        //Shot and position dont need any logic for set or get as it is already been set when enum was created.
         public Position Position { get; set; }
 
         public Shot Shot { get; set; }
@@ -129,16 +141,17 @@
             _dateOfBirth = new DateOnly();
             _weightInPounds = 0;
             _heightInInches = 0;
-            Position = Position.Center;
-            Shot = Shot.Left;
+            Position = Position.Center; //this is the default position from the enum 
+            Shot = Shot.Left; //default position from the enum
         }
 
         //Greedy Constructor
-        public HockeyPlayer(string firstName, string lastName, String birthPlace, DateOnly dateOfBirth,
+        public HockeyPlayer(string firstName, string lastName, string birthPlace, DateOnly dateOfBirth,
             int weightInPounds, int heightInInches, 
-            Position position = Position.Center, Shot shot = Shot.Left)
+            Position position = Position.Center,
+            Shot shot = Shot.Left)
         {
-            //ToDo: implement and use the remaining properties
+            //values set using the properties since the validation is in it.
             FirstName = firstName;
             LastName = lastName;
             BirthPlace = birthPlace;
@@ -147,8 +160,6 @@
             DateOfBirth = dateOfBirth;
             Shot = shot;
             Position = position;
-        }
-
-        //HockeyPlayer player = new HockeyPlayer("jane", "doe", "edmonton", new DateOnly(), 1, 2);
+        } 
     }
 }
