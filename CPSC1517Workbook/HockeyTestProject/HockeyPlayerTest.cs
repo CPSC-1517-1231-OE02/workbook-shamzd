@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Hockey.Data;
+using System.Runtime.CompilerServices;
 
 namespace Hockey.Test
 {

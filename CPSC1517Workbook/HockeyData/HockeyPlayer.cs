@@ -14,8 +14,11 @@ namespace Hockey.Data
         private int _heightInInches;
         private int _weightInPounds;
         private DateOnly _dateOfBirth; //type reperensents a specific structure for a date variable.
+        
 
         /* 
+         * Since the shot and position have their own cs file with auto implemented properties and did not need any validations they do not need to be part of the data fields. 
+         * They will have their own properties.
         private Position _position; //LeftWing, RightWing, Center, Defense, Goalie/ Created Enum in another file
         private Shot _shot; //created emun in another file
         */
@@ -48,6 +51,7 @@ namespace Hockey.Data
             }
             set
             {
+                //calling the method IsNullEmptyOrWhiteSpace using the "." ext from the utilities class 
                 if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("First Name cannot be null or empty.");
@@ -118,6 +122,7 @@ namespace Hockey.Data
             set
             {
                 //Can't be in th future
+                //if(value > DateOnly.FromDateTime(DateTime.Now)) ==> Instead used the utilities class from utilities.cs file
                 if(Utilities.IsInTheFuture(value))//doing the check to make sure we dont get bad values
                 {
                     throw new ArgumentException("Date of birth cannot be in the future.");
