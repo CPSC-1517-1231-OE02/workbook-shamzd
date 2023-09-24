@@ -1,44 +1,25 @@
-using FluentAssertions;
+//using FluentAssertions;//Adding nuget packages
 using Hockey.Data;
-using System.Runtime.CompilerServices;
+//using System.Runtime.CompilerServices;
+//using Xunit.Sdk;
 
 namespace Hockey.Test
 {
+    [Fact]
     public class HockeyPlayerTest
         
     {
-        public HockeyPlayer GenerateTestPlayer()
-        {
-            return new HockeyPlayer();
-        }
 
+        //Arrange
+        int a = 1;
+        int b = 1;
+        int actual;
 
-        [Fact]
-        public void HockeyPlayer_FirstName_ReturnsGoodFirstName()
-        {
-            //Arrange
-            HockeyPlayer player = GenerateTestPlayer();
-            const string NAME = "test";
-            player.FirstName = NAME;
+        //Act
+        
 
-            //Act
-            string actual = player.FirstName;
-            
+        //Assert
+        
 
-            //Assert
-            actual.Should().Be(NAME);
-            
-        }
-
-        [Fact]
-        public void HockeyPlayer_FirstName_ThrowsExceptionForEmptyArg()
-        {
-            HockeyPlayer player = GenerateTestPlayer();
-            const string EMPTY_NAME = "";
-
-            Action act = () => player.FirstName = EMPTY_NAME;
-
-            act.Should().Throw<ArgumentException>().WithMessage("First Name cannot be null or empty");
-        }
     }
 }

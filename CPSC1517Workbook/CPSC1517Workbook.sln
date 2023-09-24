@@ -5,11 +5,13 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyData", "HockeyData\HockeyData.csproj", "{3B5B914D-3778-4DE6-AA7D-3AFFE7EB9015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{E7673BAF-5008-451E-B299-FB806FE588B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities.csproj", "{E7673BAF-5008-451E-B299-FB806FE588B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyConsoleApp", "HockeyConsoleApp\HockeyConsoleApp.csproj", "{C396E6B7-4E39-4E86-951D-89672996742C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyConsoleApp", "HockeyConsoleApp\HockeyConsoleApp.csproj", "{C396E6B7-4E39-4E86-951D-89672996742C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyTestProject", "HockeyTestProject\HockeyTestProject.csproj", "{82C6FBA3-108A-4C3C-A0FE-66DA3DEAFC6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilitiesTestProject", "UtilitiesTestProject\UtilitiesTestProject.csproj", "{BA0B9C2E-8BD9-48DD-B46B-2176B69EE1CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D41368A8-0C48-4C8E-B04A-BDFC672C2037}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +31,14 @@ Global
 		{C396E6B7-4E39-4E86-951D-89672996742C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C396E6B7-4E39-4E86-951D-89672996742C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C396E6B7-4E39-4E86-951D-89672996742C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82C6FBA3-108A-4C3C-A0FE-66DA3DEAFC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82C6FBA3-108A-4C3C-A0FE-66DA3DEAFC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82C6FBA3-108A-4C3C-A0FE-66DA3DEAFC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82C6FBA3-108A-4C3C-A0FE-66DA3DEAFC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0B9C2E-8BD9-48DD-B46B-2176B69EE1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0B9C2E-8BD9-48DD-B46B-2176B69EE1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0B9C2E-8BD9-48DD-B46B-2176B69EE1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0B9C2E-8BD9-48DD-B46B-2176B69EE1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

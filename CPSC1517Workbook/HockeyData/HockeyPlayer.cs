@@ -4,6 +4,8 @@ namespace Hockey.Data
 {
     /// <summary>
     /// An instance of this class will hold data about hockey player.
+    /// /// The characteristics (data) of the class are:
+    ///     first name, last name, weight, height, date of birth, position, shot, birthplace
     /// </summary>
     public class HockeyPlayer
     {
