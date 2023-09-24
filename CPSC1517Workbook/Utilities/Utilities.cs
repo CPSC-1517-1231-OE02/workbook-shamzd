@@ -39,6 +39,7 @@ namespace Utils
             */
         }
 
+        //Overloaded for the fact that the test unit need the 3 types int, double and decimal in order to work 
         public static bool IsPositive(int value)
         {
             return value  > 0;
@@ -51,6 +52,29 @@ namespace Utils
              */
         }
 
+        public static bool IsPositive(double value)
+        {
+            return value > 0;
+            //Can use 
+
+            /*
+             * Ternary Operator -->
+                public static bool IsPositive(double value) => value > 0 ? true : false;
+
+             */
+        }
+
+        public static bool IsPositive(decimal value)
+        {
+            return value > 0;
+            //Can use 
+
+            /*
+             * Ternary Operator -->
+                public static bool IsPositive(decimal value) => value > 0 ? true : false;
+
+             */
+        }
 
         public static bool IsInTheFuture(DateOnly value)
         {
