@@ -33,7 +33,8 @@ namespace Hockey.Data
             {
                 return _birthPlace;
             }
-            set
+            //This is now a read only, where once the value is initially in the users cannot change it. It is only going to be accessable from within this class 
+            private set
             {
                 
                 if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
@@ -51,7 +52,7 @@ namespace Hockey.Data
             {
                 return _firstName;
             }
-            set
+            private set
             {
                 //calling the method IsNullEmptyOrWhiteSpace using the "." ext from the utilities class 
                 if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
@@ -69,7 +70,7 @@ namespace Hockey.Data
             {
                 return _lastName;
             }
-            set
+            private set
             {
                 if (Utilities.IsNullEmptyOrWhiteSpace(value))//doing the check to make sure we dont get bad values
                 {
@@ -86,7 +87,7 @@ namespace Hockey.Data
             {
                 return _heightInInches;
             }
-            set
+            private set
             {
                 if (Utilities.IsZeroOrNegative(value))//doing the check to make sure we dont get bad values
                 {
@@ -103,7 +104,7 @@ namespace Hockey.Data
             {
                 return _weightInPounds;
             }
-            set
+            private set
             {
                 if (!Utilities.IsPositive(value))//doing the check to make sure we dont get bad values
                 {
@@ -121,7 +122,7 @@ namespace Hockey.Data
                 return _dateOfBirth;
             }
 
-            set
+            private set
             {
                 //Can't be in th future
                 //if(value > DateOnly.FromDateTime(DateTime.Now)) ==> Instead used the utilities class from utilities.cs file
@@ -139,6 +140,8 @@ namespace Hockey.Data
 
         public Shot Shot { get; set; }
 
+        /*
+         * No Need for the default constructor
         //Default Constructor
         public HockeyPlayer()
         {
@@ -151,6 +154,7 @@ namespace Hockey.Data
             Position = Position.Center; //this is the default position from the enum 
             Shot = Shot.Left; //default position from the enum
         }
+        */
 
         //Greedy Constructor
         public HockeyPlayer(string firstName, string lastName, string birthPlace, DateOnly dateOfBirth,
@@ -167,6 +171,12 @@ namespace Hockey.Data
             DateOfBirth = dateOfBirth;
             Shot = shot;
             Position = position;
-        } 
+        }
+
+        //Override the ToString
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }
