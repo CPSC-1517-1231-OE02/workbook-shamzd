@@ -140,8 +140,8 @@ namespace Hockey.Data
 
         public Shot Shot { get; set; }
 
-        /*
-         * No Need for the default constructor
+        
+         //* No Need for the default constructor
         //Default Constructor
         public HockeyPlayer()
         {
@@ -154,7 +154,7 @@ namespace Hockey.Data
             Position = Position.Center; //this is the default position from the enum 
             Shot = Shot.Left; //default position from the enum
         }
-        */
+        
 
         //Greedy Constructor
         public HockeyPlayer(string firstName, string lastName, string birthPlace, DateOnly dateOfBirth,
