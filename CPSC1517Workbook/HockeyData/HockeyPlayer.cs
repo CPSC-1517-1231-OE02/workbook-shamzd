@@ -16,6 +16,7 @@ namespace Hockey.Data
         private int _heightInInches;
         private int _weightInPounds;
         private DateOnly _dateOfBirth; //type reperensents a specific structure for a date variable.
+        private int _jerseyNumber;
         
 
         /* 
@@ -158,7 +159,7 @@ namespace Hockey.Data
 
         //Greedy Constructor
         public HockeyPlayer(string firstName, string lastName, string birthPlace, DateOnly dateOfBirth,
-            int weightInPounds, int heightInInches, 
+            int weightInPounds, int heightInInches, int jerseyNumber,
             Position position = Position.Center,
             Shot shot = Shot.Left)
         {
@@ -169,8 +170,31 @@ namespace Hockey.Data
             HeightInInches = heightInInches;
             WeightInPounds = weightInPounds;
             DateOfBirth = dateOfBirth;
+            JerseyNumber = jerseyNumber;
             Shot = shot;
             Position = position;
+        }
+
+        //This is the hockey player age that we got from the test class that was created. It is only going to need a get since there is no setting of this property.  
+        public int Age => (DateOnly.FromDateTime(DateTime.Now).DayNumber - DateOfBirth.DayNumber) / 365;
+
+        public int JerseyNumber
+        {
+             
+            get
+            {
+                return _jerseyNumber;
+            }
+            //Set the exceptions here to make sure it will pass the test bad jersey numbers
+            set
+            {
+                if(value < 1 || value >98)
+                {
+                    throw new ArgumentOutOfRangeException("Jersey number should be between 1 and 98.", new ArgumentException());//in this case there is an argument exception, but we can add the correct type argumentoutofrangeexception with the message but the underlining issue is the argumentexception
+                }
+
+                _jerseyNumber = value;
+            }
         }
 
         //Override the ToString
