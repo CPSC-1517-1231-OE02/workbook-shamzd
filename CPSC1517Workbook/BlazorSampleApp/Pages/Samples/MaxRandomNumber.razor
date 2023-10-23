@@ -1,0 +1,47 @@
+﻿@page "/random-number"
+
+<h3>Max Random Number</h3>
+
+<p>This page will render a random number between 1 and a max value.</p>
+
+<p>@feedbackMessage</p>
+
+<fieldset>
+	<div>
+		<label for="maxNumber">Max Number Value</label>
+		@*Bind value is used to bind data from the C# code tot he user interface.*@
+		<input type="text" id="maxNumber" name="maxNumber" @bind-value="@MaxNumber"/>
+	</div>
+	<div>
+		@*Add an event in the mouse click of the button.*@
+		<button @onclick="@GenerateRandomNumber">Generate Number</button>
+	</div>
+	<div>
+		@*Add an event in the mouse click of the button.*@
+		<button @onclick="@ClearMessage">Clear Output</button>
+	</div>
+</fieldset>
+
+@code {
+	@*Property to get and set the Max number inputted by the user*@
+	private int MaxNumber { get; set; }
+
+	private int randomNumber;
+
+	@*String is nullable so the '?'*@
+	private string? feedbackMessage;
+
+	private void GenerateRandomNumber()
+	{
+		@*When going thru the random numbers the MaxNumber has the parameters between 1 and MaxNumber +1 so the Max number will be included in the generator.*@
+		randomNumber = Random.Shared.Next(1, MaxNumber +1);
+		feedbackMessage = $"Your random number is {randomNumber}";
+	}
+
+	private void ClearMessage()
+	{
+
+		feedbackMessage = null;
+	}
+
+}

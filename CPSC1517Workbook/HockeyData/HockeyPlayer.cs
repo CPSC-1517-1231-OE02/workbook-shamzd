@@ -1,4 +1,5 @@
-﻿using Utils;
+﻿using System.Globalization;
+using Utils;
 
 namespace Hockey.Data
 {
@@ -175,8 +176,12 @@ namespace Hockey.Data
             Position = position;
         }
 
-        //This is the hockey player age that we got from the test class that was created. It is only going to need a get since there is no setting of this property.  
-        public int Age => (DateOnly.FromDateTime(DateTime.Now).DayNumber - DateOfBirth.DayNumber) / 365;
+		public HockeyPlayer(string v1, string v2, string v3, DateOnly dateOnly, int v4, int v5, Position defense, Shot right)
+		{
+		}
+
+		//This is the hockey player age that we got from the test class that was created. It is only going to need a get since there is no setting of this property.  
+		public int Age => (DateOnly.FromDateTime(DateTime.Now).DayNumber - DateOfBirth.DayNumber) / 365;
 
         public int JerseyNumber
         {
@@ -197,10 +202,10 @@ namespace Hockey.Data
             }
         }
 
-        //Override the ToString
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
-    }
+		//Override the ToString
+		public override string ToString()
+		{
+			return $"{FirstName},{LastName},{JerseyNumber},{Position},{Shot},{HeightInInches},{WeightInPounds},{DateOfBirth.ToString("MMM-dd-yyyy", CultureInfo.InvariantCulture)},{BirthPlace}";
+		}
+	}
 }

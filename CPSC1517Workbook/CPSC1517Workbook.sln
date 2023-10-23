@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilitiesTestProject", "Uti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyTestProject", "TestProject1\HockeyTestProject.csproj", "{D41368A8-0C48-4C8E-B04A-BDFC672C2037}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSampleApp", "BlazorSampleApp\BlazorSampleApp.csproj", "{6E64D23E-B2C9-481E-A967-A2C8130D407E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D41368A8-0C48-4C8E-B04A-BDFC672C2037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E64D23E-B2C9-481E-A967-A2C8130D407E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E64D23E-B2C9-481E-A967-A2C8130D407E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E64D23E-B2C9-481E-A967-A2C8130D407E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E64D23E-B2C9-481E-A967-A2C8130D407E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

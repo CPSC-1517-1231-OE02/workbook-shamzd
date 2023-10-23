@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Hockey.Data;
 using System.Collections;
+using System.Globalization;
 
 namespace Hockey.Test
 {
@@ -8,7 +9,7 @@ namespace Hockey.Test
 
     {
         // Constants for a test player
-        const string FirstName = "Connor";
+        const string FirstName = "Connor"; 
         const string LastName = "Brown";
         const string BirthPlace = "Toronto, ON, CAN";
         const int HeightInInches = 72;
@@ -17,7 +18,7 @@ namespace Hockey.Test
         const Position PlayerPosition = Position.Center;
         const Shot PlayerShot = Shot.Left;
         static readonly DateOnly DateOfBirth = new DateOnly(1994, 01, 14);
-        const string ToStringValue = $"{FirstName} {LastName}";
+        string ToStringValue = $"{FirstName},{LastName},{JerseyNumber},{PlayerPosition},{PlayerShot},{HeightInInches},{WeightInPounds},{DateOfBirth.ToString("MMM-dd-yyyy", CultureInfo.InvariantCulture)},{BirthPlace}";
         readonly int Age = (DateOnly.FromDateTime(DateTime.Now).DayNumber - DateOfBirth.DayNumber) / 365;
 
         //[Fact]
@@ -31,7 +32,7 @@ namespace Hockey.Test
             return new HockeyPlayer(FirstName, LastName, BirthPlace, DateOfBirth, WeightInPounds, HeightInInches, JerseyNumber, PlayerPosition, PlayerShot);
         }
 
-        //Create a test for the constructors, We cannot test it by passing values, the reason being the Date.Only params. Date.Only values cnnot be passed in by InlineData
+        //Create a test for the constructors, We cannot test it by passing values, the reason being the Date.Only params. Date.Only values cannot be passed in by InlineData
         // Test data generateor for class data (see line 85 below)
         private class BadHockeyPlayerTestDataGenerator : IEnumerable<object[]>
         {
@@ -62,7 +63,7 @@ namespace Hockey.Test
         }
 
         [Theory]
-        [MemberData(nameof(GoodHockeyPlayerTestDataGenerator))]// this will reflect what ever the datagenerator for memeber data is called. 
+        [MemberData(nameof(GoodHockeyPlayerTestDataGenerator))]// this will reflect what ever the data generator for memeber data is called. 
         public void HockeyPlayer_GreedyConstructor_ReturnHockeyPlayer(string firstName, string lastName, string birthPlace,
             DateOnly dateOfBirth, int heighInInces, int weightInPounds, int jerseryNumber, Position position, Shot shot)//The params here must reflect the yeild return in the new object array on line 57
         {
