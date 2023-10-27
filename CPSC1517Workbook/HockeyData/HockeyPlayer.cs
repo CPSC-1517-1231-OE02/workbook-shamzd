@@ -207,5 +207,60 @@ namespace Hockey.Data
 		{
 			return $"{FirstName},{LastName},{JerseyNumber},{Position},{Shot},{HeightInInches},{WeightInPounds},{DateOfBirth.ToString("MMM-dd-yyyy", CultureInfo.InvariantCulture)},{BirthPlace}";
 		}
+
+       
+        
+
+        public static HockeyPlayer Parse(string line)
+        {
+            //Connor,Brown,28,RightWing,Right,72,184,Jan-14-1994,Toronto-ON-CAN
+            //0        1    2  3         4     5   6     7          8
+
+            //Validation
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                throw new ArgumentNullException("Line cannot be null or empty.", new ArgumentException());
+            }
+
+            //split on commas
+            string[] fields = line.Split(',');
+            if(fields.Length != 9)
+            {
+                throw new InvalidDataException("Incorrect number of fields.");
+            }
+
+            HockeyPlayer player;
+
+            try
+            {
+                player = new HockeyPlayer(fields[0], fields[1], fields[8], DateOnly.ParseExact(fields[7], "MMM-dd-yyyy"), int.Parse(fields[5]), int.Parse(fields[6]), int.Parse(fields[2]), Enum.Parse<Position>(fields[3]), Enum.Parse<Shot>(fields[4]));
+            }
+            catch
+            {
+                throw new FormatException($"Error parsing line {line}");
+            }
+            
+
+            return player;
+		}
+        
+        public static bool TryParse(string line, out HockeyPlayer? player)
+        {
+            bool isParsed;
+
+            try
+            {
+                player = HockeyPlayer.Parse(line);
+                isParsed = true;
+            }
+            catch
+            {
+                player = null;
+                isParsed = false;
+            }
+
+            return isParsed;
+        }
+
 	}
 }
