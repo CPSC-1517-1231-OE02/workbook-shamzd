@@ -184,5 +184,18 @@ namespace Hockey.Test
             actual.Should().NotBeNull();
         }
 
-    }
+		//ToDo: create a false test
+		[Fact]
+		public void HockeyPlayer_TryParse_ParsesUnsuccessfully()
+		{
+			HockeyPlayer? actual = null;
+			bool result;
+
+			result = HockeyPlayer.TryParse(ToStringValue, out actual);
+
+			result.Should().BeFalse();
+			actual.Should().BeNull();
+		}
+
+	}
 }

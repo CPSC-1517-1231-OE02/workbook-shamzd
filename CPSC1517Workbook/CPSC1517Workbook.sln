@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyTestProject", "TestPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSampleApp", "BlazorSampleApp\BlazorSampleApp.csproj", "{6E64D23E-B2C9-481E-A967-A2C8130D407E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WestWindSystem", "WestWindSystem\WestWindSystem.csproj", "{CD4A33E6-2F07-49FD-86F2-66B4BF4A1CA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestWindSystem", "WestWindSystem\WestWindSystem.csproj", "{CD4A33E6-2F07-49FD-86F2-66B4BF4A1CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WestWindApp", "WestWindApp\WestWindApp.csproj", "{7CE2D7E5-96FC-4398-A5E7-5AE097C4BE37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestWindApp", "WestWindApp\WestWindApp.csproj", "{7CE2D7E5-96FC-4398-A5E7-5AE097C4BE37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
