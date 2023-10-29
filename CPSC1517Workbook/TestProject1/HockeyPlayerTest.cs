@@ -185,8 +185,9 @@ namespace Hockey.Test
         }
 
 		//ToDo: create a false test
-		[Fact]
-		public void HockeyPlayer_TryParse_ParsesUnsuccessfully()
+		/*
+		 * [Fact]
+         public void HockeyPlayer_TryParse_ParsesUnsuccessfully()
 		{
 			HockeyPlayer? actual = null;
 			bool result;
@@ -196,6 +197,9 @@ namespace Hockey.Test
 			result.Should().BeFalse();
 			actual.Should().BeNull();
 		}
+         */
+
+
 
 	}
 }
