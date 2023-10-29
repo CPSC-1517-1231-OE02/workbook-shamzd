@@ -13,11 +13,19 @@
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="phone-number">Phone Number:</label>
-		<input class="form-control" type="text" id="contact-name" placeholder="123-456-7890" @bind="PhoneNumber" />
+		<input class="form-control @(ErrorList.ContainsKey("phone-number") ? "is-invalid" : "")"  type="text" id="phone-number" placeholder="123-456-7890" @bind="PhoneNumber" />
+		@if (ErrorList.ContainsKey("phone-number"))
+		{
+			<div class="mt-3 alert alert-danger"> @ErrorList["phone-number"]</div>
+		}
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="years">Number Of Years as Customer</label>
+		<label class="form-label @(ErrorList.ContainsKey("years") ? "is-invalid" : "")" for="years">Number Of Years as Customer</label>
 		<input class="form-control" type="number" id="years" min="0" step="1" @bind="YearsAsCustomer" />
+		@if (ErrorList.ContainsKey("years"))
+		{
+			<div class="mt-3 alert alert-danger"> @ErrorList["years"]</div>
+		}
 	</div>
 	<div class="form-check">
 		<input class="form-check-input" type="checkbox" id="current-customer" @bind="CurrentCustomer" />
@@ -36,14 +44,14 @@
 	</div>
 	<div class="form-check">
 		<input class="form-check-input" type="radio" name="service-type" id="internet-tv" checked="@(ServiceType=="INTERNET_TV")" @onclick="@(()=> ServiceType = "INTERNET_TV")" />
-		<label class="form-check-label" for="internet-tv">Internet & TV</label>
+		<label class="form-check-label " for="internet-tv">Internet & TV</label>
 	</div>
 </fieldset>
 <fieldset class="form-group card p-3 mb-3">
 	<legend>Required Service</legend>
 	<div class=" mb-3">
 		<select class="form-select" id="reason" @bind="Reason">
-			<option selected disabled>Select and option</option>
+			<option selected disabled>Select an option</option>
 			<option value="interrupt">Interrupt</option>
 			<option value="new">New Service</option>
 			<option value="other">Other</option>
@@ -95,6 +103,18 @@
 			ErrorList.Add("contact-name", "Contact name required");
 		}
 
+		if (string.IsNullOrWhiteSpace(PhoneNumber))
+		{
+			ErrorList.Add("phone-number", "Phone number required");
+		}
+
+		if (int.IsNegative(YearsAsCustomer))
+		{
+			ErrorList.Add("years", "Years of service cannot be negative.");
+		}
+
+		
+
 		if(ErrorList.Count == 0)
 		{
 			//If the count is zero then the form is valid
@@ -116,7 +136,7 @@
 			CurrentCustomer = false;
 			ServiceType = null;
 			Reason = "";
-			ServiceRequest = ;
+			ServiceRequest = "";
 		}
 
 		
