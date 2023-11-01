@@ -35,16 +35,22 @@
 <fieldset class="form-group card p-3 mb-3">
 	<legend>Service Information</legend>
 	<div class="form-check">
-		<input class="form-check-input" type="radio" name="service-type" id="internet" checked="@(ServiceType=="INTERNET")" @onclick="@(()=> ServiceType = "INTERNET")"/>
+		<input class="form-check-input @(ErrorList.ContainsKey("service-type") ? "is-invalid" : "")" type="radio" name="service-type" id="internet" checked="@(ServiceType=="INTERNET")" @onclick="@(()=> ServiceType = "INTERNET")" />
 		<label class="form-check-label" for="internet">Internet</label>
 	</div>
 	<div class="form-check">
-		<input class="form-check-input" type="radio" name="service-type" id="tv" checked="@(ServiceType=="TV")" @onclick="@(()=> ServiceType = "TV")" />
+		<input class="form-check-input  @(ErrorList.ContainsKey("service-type") ? "is-invalid" : "")" type="radio" name="service-type" id="tv" checked="@(ServiceType=="TV")" @onclick="@(()=> ServiceType = "TV")" />
 		<label class="form-check-label" for="tv">TV</label>
 	</div>
 	<div class="form-check">
-		<input class="form-check-input" type="radio" name="service-type" id="internet-tv" checked="@(ServiceType=="INTERNET_TV")" @onclick="@(()=> ServiceType = "INTERNET_TV")" />
+		<input class="form-check-input  @(ErrorList.ContainsKey("service-type") ? "is-invalid" : "")" type="radio" name="service-type" id="internet-tv" checked="@(ServiceType=="INTERNET_TV")" @onclick="@(()=> ServiceType = "INTERNET_TV")" />
 		<label class="form-check-label " for="internet-tv">Internet & TV</label>
+	</div>
+	<div class="mb-3">
+		@if (ErrorList.ContainsKey("service-type"))
+		{
+			<div class="mt-3 alert alert-danger"> @ErrorList["service-type"]</div>
+		}
 	</div>
 </fieldset>
 <fieldset class="form-group card p-3 mb-3">
@@ -107,10 +113,16 @@
 		{
 			ErrorList.Add("phone-number", "Phone number required");
 		}
+		
 
 		if (int.IsNegative(YearsAsCustomer))
 		{
 			ErrorList.Add("years", "Years of service cannot be negative.");
+		}
+
+		if (string.IsNullOrWhiteSpace(ServiceType))
+		{
+			ErrorList.Add("service-type", "Please pick a service type.");
 		}
 
 		
