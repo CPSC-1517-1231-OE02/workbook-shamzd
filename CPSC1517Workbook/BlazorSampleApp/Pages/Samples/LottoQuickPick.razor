@@ -1,0 +1,104 @@
+﻿@page "/lotto-quick-pick"
+
+<h3>Lotto Quick Pick</h3>
+
+<p>This Blazor componenet allows you to generate quick pick numbers for Lotto 6/49 or Lotto Max</p>
+
+@if(QuickPickNumbers.Count > 0){
+
+	<p>Your quick pick numbers are:</p>
+	<table class="table table-striped text-center">
+		<thead>
+			<tr class="table-info">
+				@for (int num = 1; num <= QuickPickNumbers.Count; num += 1)
+				{
+					<th>Num @num</th>
+				}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				@foreach (var num in QuickPickNumbers)
+				{
+					<td>@num</td>
+				}
+			</tr>
+		</tbody>
+	</table>
+}
+
+<fieldset>
+	<p>Select Lotto Type:</p>
+	<div class="mb-3">
+		<input class="form-check-input" name="lottoType" type="radio" value="649" id="lotto649" checked="@(LottoType == "649")" @onclick="@(() => LottoType = "649")" />
+		<label class="form-check-label" for="lotto649">Lotto 6/49</label>
+	</div>
+	<div class="mb-3">
+		<input class="form-check-input" name="lottoType" type="radio" value="max" id="lottoMax" checked="@(LottoType == "MAX")"
+		@onclick="@(() => LottoType = "MAX")"/>
+		<label class="form-check-label" for="lottoMax">Lotto Max</label>
+	</div>
+	<div class="mb-3">
+		<button class="btn btn-primary" @onclick="@GenerateQuickPick">Generate Quick Pick</button>
+	</div>
+</fieldset>
+
+
+
+@code {
+
+	//lotto type property
+	public string LottoType { get; set; } = "MAX";
+	//generate quick pick numbers for Lotto 6/49
+	private List<int> QuickPickNumbers { get; set; } = new List<int>();
+
+	private void GenerateQuickPick(){
+		//the max lotto number for LottoMax is 50 
+		//the max lotto number for Lotto 6/49 is 49
+
+		int maxLottoNumber = LottoType == "MAX" ? 50 : 49;
+
+		/*An if else staement of the above code
+		int maxLottoNumber;
+			if (LottoType == "MAX") 
+			{
+				maxLottoNumber = 50;
+			} 
+			else 
+			{
+				maxLottoNumber = 49;
+			}
+		*/
+
+		int lottoSelections = LottoType == "MAX" ? 7 : 6;
+		/*An if else staement of the above code
+		int LottoSelections;
+			if (LottoSelection == "MAX") 
+			{
+				maxLottoNumber = 50;
+			} 
+			else 
+			{
+				maxLottoNumber = 49;
+			}
+		*/
+
+		//clear previous quick pick numbers
+		QuickPickNumbers.Clear();
+
+		//Generate the Random numbers usign while loop
+		while (QuickPickNumbers.Count < lottoSelections)
+		{
+			int number = Random.Shared.Next(1, maxLottoNumber);
+			if (!QuickPickNumbers.Contains(number))
+			{
+				QuickPickNumbers.Add(number);
+			}
+		}
+		
+		//Sort the numbers
+		QuickPickNumbers.Sort();
+
+	}
+
+}
