@@ -1,4 +1,5 @@
 ﻿@page "/service"
+@using System.Text.RegularExpressions
 
 <h3>Service Form Page</h3>
 
@@ -62,6 +63,10 @@
 			<option value="new">New Service</option>
 			<option value="other">Other</option>
 		</select>
+		@if (ErrorList.ContainsKey("reason"))
+		{
+			<div class="mt-3 alert alert-danger"> @ErrorList["reason"]</div>
+		}
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="request-info">Request Information</label>
@@ -113,11 +118,16 @@
 		{
 			ErrorList.Add("phone-number", "Phone number required");
 		}
-		
 
-		if (int.IsNegative(YearsAsCustomer))
+		//validate if the phone number is in the correct format
+		if (!string.IsNullOrWhiteSpace(PhoneNumber) && !Regex.IsMatch(PhoneNumber, @"^\d{3}-\d{3}-\d{4}$"))
 		{
-			ErrorList.Add("years", "Years of service cannot be negative.");
+			ErrorList.Add("phone-number", "Phone number must be in the format 123-456-7890");
+		}
+
+		if (int.IsNegative(YearsAsCustomer) || YearsAsCustomer <= 0)
+		{
+			ErrorList.Add("years", "Years of service cannot be negative or 0.");
 		}
 
 		if (string.IsNullOrWhiteSpace(ServiceType))
@@ -125,7 +135,11 @@
 			ErrorList.Add("service-type", "Please pick a service type.");
 		}
 
-		
+		//validation to select a drop down option for reason = Select an option throw an error
+		if (string.IsNullOrWhiteSpace(Reason) || Reason == "Select an option")
+		{
+			ErrorList.Add("reason", "Please select a reason.");
+		}
 
 		if(ErrorList.Count == 0)
 		{
