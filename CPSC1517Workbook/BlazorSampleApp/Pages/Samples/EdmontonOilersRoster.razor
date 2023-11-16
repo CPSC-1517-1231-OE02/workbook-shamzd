@@ -58,7 +58,7 @@
 
 	protected override void OnInitialized()
 	{
-		@*Here we are getting access tot he csv file within the data folder*@
+		@*Here we are getting access to the csv file within the data folder*@
 		string csvFilePath = $@"{WebHostEnvironment.ContentRootPath}\Data\players.csv";
 
 		using(StreamReader reader = new StreamReader(csvFilePath))

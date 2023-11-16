@@ -1,8 +1,21 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using WestWindApp.Data;
+using WestWindWebApp.Data;
+
+//Required NameSpaces
+using WestWindSystem;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+/*builder.Services.WWBackEndDependencies(options => 
+    options.UseSqlServer("Server=.;Database=WestWind;TrustServerCertificate=True;Trusted_Connection=true")
+);*/
+
+var connectionString = builder.Configuration.GetConnectionString("WWDB");
+builder.Services.WWBackEndDependencies(options =>
+    options.UseSqlServer(connectionString)
+);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -14,7 +27,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Error");
 }
 
 
