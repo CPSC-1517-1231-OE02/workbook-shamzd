@@ -1,0 +1,48 @@
+﻿@page "/category-products"
+
+@using WestWindSystem.BLL
+@using WestWindSystem.Entities
+
+<h3>Category Products Page</h3>
+
+<fieldset>
+	<legend>Category Selection</legend>
+	<div class="row row-cols-lg-auto g-3 align-items-center">
+		<div class="cols-12">
+			<label class="visually-hidden" for="category">Category:</label>
+			<select class="form-select" id="category">
+				<option selected disabled>Select a Category</option>
+				@if (Categories != null)
+				{
+					@foreach (var c in Categories)
+					{
+						<option value="@c.CategoryId">@c.Description</option>
+					}
+				}
+				
+			</select>
+		</div>
+		<div class="col-12">
+			<buton class="btn btn-primary">Get Products</buton>
+		</div>
+	</div>
+</fieldset>
+
+@code {
+	[Inject]
+	CategoryServices CategoryServices { get; set; }
+	[Inject]
+	ProductServices ProductServices { get; set; }
+
+	public List<Category>? Categories { get; set; } = null;
+
+	protected override void OnInitialized()
+	{
+		{
+			Categories = CategoryServices.GetAllCategories();
+			base.OnInitialized();
+		}
+	}
+
+
+}

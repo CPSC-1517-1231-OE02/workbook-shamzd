@@ -9,7 +9,7 @@ using WestWindSystem.Entities;
 
 namespace WestWindSystem.BLL
 {
-    internal class CategoryServices
+    public class CategoryServices
     {
 
         private readonly WestWindContext _context;
