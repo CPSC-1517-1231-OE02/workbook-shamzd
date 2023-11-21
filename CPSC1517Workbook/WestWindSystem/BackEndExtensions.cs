@@ -42,6 +42,14 @@ namespace WestWindSystem
 
                 return new ProductServices(context!);
             });
-        }
+
+			//Register Services classes as transient services
+			services.AddTransient<SupplierServices>((serviceProvider) =>
+			{
+				var context = serviceProvider.GetService<WestWindContext>();
+
+				return new SupplierServices(context!);
+			});
+		}
     }
 }
