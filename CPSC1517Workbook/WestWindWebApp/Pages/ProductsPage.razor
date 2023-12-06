@@ -1,6 +1,6 @@
 ﻿@page "/products/{CategoryId:int?}"
 
-<h3>Products Page <span style="float:right;"><a class="btn btn-success" href="/product">New Product</a></span></h3>
+<h3>Products Page <span style="float:right;"><a class="btn btn-success" href="/product">New Product</a></span></h3>@*Here we Create the ADD Product button on the query page*@
 
 <fieldset>
 	<legend>Category Selection</legend>
@@ -20,7 +20,7 @@
 			</select>
 		</div>
 		<div class="col-12">
-			<buton class="btn btn-primary" @onclick="HandleCategorySelected">List Products</buton>
+			<button class="btn btn-primary" @onclick="HandleCategorySelected">List Products</button>
 		</div>
 	</div>
 </fieldset>
@@ -30,15 +30,15 @@
 	<div class="row row-cols-lg-auto g-3 align-items-center">
 		<div class="cols-12">
 			<label class="visually-hidden" for="category">Search:</label>
-			<input class="form-control" type="text" id="search" @bind="PartialSearch"></input>
+			<input class="form-control" type="text" id="search" @bind="PartialSearch">
 		</div>
 		<div class="col-12">
-			<buton class="btn btn-primary" @onclick="HandlePartialSearch">Search Products</buton>
+			<button class="btn btn-primary" @onclick="HandlePartialSearch">Search Products</button>
 		</div>
 	</div>
 </fieldset>
 
-@if(Products != null)
+@if(Products != null && Products.Count > 0)
 {
 	<table class="table table-striped">
 		<thead>
@@ -54,6 +54,7 @@
 			@foreach (var p in Products)
 			{
 				<tr>
+					@*Column for the view/edit link from the table*@
 					<td><a href="/product/@p.ProductId">View/Edit</a></td>
 					<td>@p.ProductName</td>
 					<td>@p.Discontinued</td>

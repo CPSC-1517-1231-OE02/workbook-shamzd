@@ -19,12 +19,12 @@ namespace WestWindWebApp.Pages
 		NavigationManager NavigationManager { get; set; }
 
 		[Parameter]
-		public int ProductId { get; set; }
+		public int ProductId { get; set; }//to show in the navigation bar for the ProductId to be displayed
 
-		private List<Supplier>? Suppliers { get; set; } = new();
-		private List<Category>? Categories { get; set; } = new();
+		private List<Supplier>? Suppliers { get; set; } = new();//this is so we can display the suppliers and categories in the drop down list 
+		private List<Category>? Categories { get; set; } = new();//this is so we can display the suppliers and categories in the drop down list 
 
-		private Product? Product { get; set; }
+		private Product? Product { get; set; }//creating a single product instead of using the attributes for each of these products 
 
 		private Dictionary<string, string> Errors { get; set; } = new();
 		private string? FeedbackMessage { get; set; }
@@ -70,18 +70,18 @@ namespace WestWindWebApp.Pages
 			return Errors.Count == 0;
 		}
 
-		protected override void OnInitialized()
+		protected override void OnInitialized()//When the page is first loaded
 		{
-			Categories = CategoryServices.GetAllCategories();
-			Suppliers = SupplierServices.GetAllSuppliers();
+			Categories = CategoryServices.GetAllCategories();//to display in the drop down... This is from the Category Services
+			Suppliers = SupplierServices.GetAllSuppliers();//To display in the drop down... This is from the Supplier Services
 			Errors = new Dictionary<string, string>();
 
-			if(ProductId != 0)
+			if(ProductId != 0)//This will check if there is a Product selected... If so it will display the product with information
 			{
 				//View/Edit
-				Product = ProductServices.GetProductById(ProductId);
+				Product = ProductServices.GetProductById(ProductId);//this is a method from the Product Services 
 
-				if(Product == null)
+				if(Product == null)//if there is no product Id selected then it will go to the add page this is specific with the ID in the URl
 				{
 					Errors.Add("init-product", $"No product was found for id {ProductId}.");
 					Product = new Product();
@@ -101,17 +101,17 @@ namespace WestWindWebApp.Pages
 		/// </summary>
 		private void HandleSaveProduct()
 		{
-			if (ValidateForm())
+			if (ValidateForm())//call the validate method here and if its true then we can do the rest
 			{
-				if(ProductId == 0)
+				if(ProductId == 0) //the product is 0 which means we want to create a new product 
 				{
 					try
 					{
-						ProductServices.AddProduct(Product!);
-						FeedbackMessage = "Product successfully Added.";
-						NavigationManager.NavigateTo($"/product/{Product!.ProductId}");
+						ProductServices.AddProduct(Product!);//get the add product method
+						FeedbackMessage = "Product successfully Added.";//this is the feedback msg where the msg will come back letting them know no errors were found
+						NavigationManager.NavigateTo($"/product/{Product!.ProductId}");//this will navigate the url with the right product ID and update it
 					}
-					catch(Exception ex) 
+					catch(Exception ex) //If there is an exception (somethign went wrong display the error msg
 					{
 						Errors.Add("product-add", ex.Message);
 					}

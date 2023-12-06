@@ -1,14 +1,18 @@
 @page "/product/{ProductId:int?}"
 
+
+@*If there is a club id that means you are directed tot he View Edit page*@
 @if (ProductId != 0)
 {
 	<h3>View/Edit Product Page</h3>
 }
+@*If there is no Club Id then you are going to the add page*@
 else
 {
 	<h3>Add Product Page</h3>
 }
 
+@*If there is a feddback message display it*@
 @if (!string.IsNullOrWhiteSpace(FeedbackMessage))
 {
 	<div class="alert alert-info">
@@ -16,6 +20,7 @@ else
 	</div>
 }
 
+@*If there are any error msgs display those*@
 @if (Errors.Count > 0)
 {
 	<div class="alert alert-danger">
@@ -28,6 +33,10 @@ else
 
 <fieldset class="mb-3">
 	<legend>Product Details</legend>
+	@*Products are never deleted fromt he DB but instead discontinued.
+		If the product is discontinued, the fields will be disabled and no button to update the fields.
+		There is a message that will display product cannot be edited
+	*@
 	@if (Product!.Discontinued)
 	{
 		<div class="row g-3 align-items-center mb-3">
@@ -36,7 +45,10 @@ else
 			</div>
 		</div>
 	}
+
+
 	<div class="row g-3 align-items-center mb-3">
+		@*If the product Id is not 0 then we display it to user, if the product ID is a 0 then we are creating a new record which means there is no Id yet*@
 		@if (ProductId != 0)
 		{
 			<div class="col-2">
@@ -44,22 +56,26 @@ else
 				<input class="form-control" type="text" id="product-id" @bind="Product.ProductId" disabled />
 			</div>
 		}
+		@*Input field for the product name, this is text and will accept any chars*@
 		<div class="col-6">
 			<label class="form-label" for="product-name">Product Name</label>
 			<input class="form-control" type="text" id="product-name" @bind="Product.ProductName" disabled="@(Product.Discontinued ? true : false)" />
 		</div>
 	</div>
+	@*Input field for Qtn/Unit which is a text and accept any chars*@
 	<div class="row g-3 align-items-center mb-3">
 		<div class="col-2">
 			<label class="form-label" for="quantity">Qty Per Unit</label>
 			<input class="form-control" type="text" id="quantity" @bind="Product.QuantityPerUnit" disabled="@(Product.Discontinued ? true : false)" />
 		</div>
+		@*This is an input field for MinOrds and is a number input field*@
 		<div class="col-2">
 			<label class="form-label" for="minimum">Minimum Order Qty</label>
 			<input class="form-control" type="number" id="minimum" @bind="Product.MinimumOrderQuantity" disabled="@(Product.Discontinued ? true : false)" />
 		</div>
 	</div>
 	<div class="row g-3 align-items-center mb-3">
+		@*Input field for unit Price with number type*@
 		<div class="col-2">
 			<label class="form-label" for="unit-price">Unit Price</label>
 			<div class="input-group">
@@ -68,16 +84,17 @@ else
 			</div>
 		</div>
 		<div class="col-2">
+			@*Input fields for unit orders with text as input type*@
 			<label class="form-label" for="units-order">Units on Order</label>
 			<input class="form-control" type="text" id="units-order" @bind="Product.UnitsOnOrder" disabled="@(Product.Discontinued ? true : false)" />
 		</div>
 	</div>
 </fieldset>
-
 <fieldset class="mb-3">
 	<legend>Related Details</legend>
 	<div class="row row-cols-lg-auto g-3 align-items-center">
 		<div class="col-12">
+			@*Select Drop down for input of Categories. Pulled from the DB using a for loop and value will be the Id but Displayed with the Name*@
 			<label class="form-label" for="category">Category</label>
 			<select class="form-select" id="category" @bind="Product.CategoryId" disabled="@(Product.Discontinued ? true : false)">
 				<option disabled selected value="0">Select a category</option>
@@ -91,6 +108,7 @@ else
 			</select>
 		</div>
 		<div class="col-12">
+			@*Select dropdown list for the list of suppliers from the product table table *@
 			<label class="form-label" for="supplier">Supplier</label>
 			<select class="form-select" id="supplier" @bind="Product.SupplierId" disabled="@(Product.Discontinued ? true : false)">
 				<option disabled selected value="0">Select a supplier</option>
@@ -106,6 +124,10 @@ else
 	</div>
 </fieldset>
 
+@*Buttons to handle adding the product and discontinue the product 
+	However this can only be displayed if the Product isnt already discontinued. The Save product is going to add it, however the
+	if condition applied for the Product Id is not a zero, which means its in the DB. 
+*@
 @if (!Product.Discontinued)
 {
 	<fieldset class="mt-5">

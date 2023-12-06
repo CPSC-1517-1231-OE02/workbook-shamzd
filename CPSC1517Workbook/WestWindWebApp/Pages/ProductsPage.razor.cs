@@ -55,8 +55,6 @@ namespace WestWindWebApp.Pages
 				NavigationManager.NavigateTo("/products");
 			}
 		}
-
-
 	}
 }
 
