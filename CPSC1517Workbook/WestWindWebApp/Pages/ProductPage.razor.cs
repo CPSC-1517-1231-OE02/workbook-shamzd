@@ -111,20 +111,20 @@ namespace WestWindWebApp.Pages
 						FeedbackMessage = "Product successfully Added.";//this is the feedback msg where the msg will come back letting them know no errors were found
 						NavigationManager.NavigateTo($"/product/{Product!.ProductId}");//this will navigate the url with the right product ID and update it
 					}
-					catch(Exception ex) //If there is an exception (somethign went wrong display the error msg
+					catch(Exception ex) //If there is an exception (something went wrong display the error msg
 					{
 						Errors.Add("product-add", ex.Message);
 					}
 				}
 			}
-			else
+			else// if the product id is not a 0 which means there is a Id so we update the product.
 			{
 				try
 				{
-					ProductServices.UpdateProduct(Product!);
-					FeedbackMessage = "Successfully Updated Product";
+					ProductServices.UpdateProduct(Product!);// here we are telling them to update the product using the product services in which the method is 
+					FeedbackMessage = "Successfully Updated Product";// the message once the product is updated in the DB
 				}
-				catch (Exception ex)
+				catch (Exception ex)//If there is an exception (something went wrong give the error
 				{
 					Errors.Add("product-add", ex.Message);
 				}
@@ -134,9 +134,9 @@ namespace WestWindWebApp.Pages
 		/// <summary>
 		/// Handle form submission and discontinue a product
 		/// </summary>
-		private void HandleDiscontinue()
+		private void HandleDiscontinue()//method for the discontinued product section
 		{
-			if(Product!.ProductId != 0)
+			if(Product!.ProductId != 0)//if the product is not not equal to 0 then we discontinue the product
 			{
 				try
 				{
